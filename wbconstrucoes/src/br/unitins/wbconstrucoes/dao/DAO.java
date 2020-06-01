@@ -2,16 +2,19 @@ package br.unitins.wbconstrucoes.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public  abstract class DAO<T>{
+import br.unitins.wbconstrucoes.model.Entity;
+
+public  abstract class DAO<T extends Entity<T>>{
 	public abstract boolean create(T entity);
 	public abstract boolean update(T entity);
 	public abstract boolean delete(int id);
 	public abstract List<T>findAll();
 	public abstract T findById(int id);
-	
+
 	public static Connection getConnetion() {
 		Connection conn = null;
 		try {
@@ -26,5 +29,36 @@ public  abstract class DAO<T>{
 			e.printStackTrace();
 		}
 		return conn;
+	}
+
+	protected void rollback(Connection conn) {
+		if(conn != null) {
+			try {
+				if(!conn.isClosed())
+					conn.rollback();
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	protected void closeStatement(PreparedStatement stat) {
+		if(stat != null) {
+			try {
+				if(!stat.isClosed())
+					stat.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	protected void closeConnection(Connection conn) {
+		if(conn != null) {
+			try {
+				if(!conn.isClosed())
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

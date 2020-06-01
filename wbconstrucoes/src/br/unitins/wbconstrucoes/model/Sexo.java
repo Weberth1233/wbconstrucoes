@@ -1,6 +1,7 @@
 package br.unitins.wbconstrucoes.model;
 
 public enum Sexo {
+	SELECIONE_SEXO(0,"Selecione sexo"),
 	MASCULINO(1,"Masculino"),
 	FEMININO(2, "Feminino");
 	

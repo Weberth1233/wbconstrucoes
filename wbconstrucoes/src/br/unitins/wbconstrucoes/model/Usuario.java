@@ -5,12 +5,17 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import org.hibernate.validator.constraints.br.CPF;
 
-public class Usuario {
+public class Usuario extends Entity<Usuario>{
 	@NotBlank(message = "Campo nome deve ser informado..")
 	private String nome;
 	
 	@Past(message = "Data não pode estar no futuro")
 	private LocalDate dataNascimento;
+	
+	@NotBlank(message="Login não pode ser vazio..")
+	private String login;
+	
+	private String senha;
 	
 	private Sexo sexo;
 	
@@ -32,6 +37,18 @@ public class Usuario {
 	}
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	public Sexo getSexo() {
 		return sexo;
