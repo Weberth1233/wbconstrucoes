@@ -18,9 +18,8 @@ public class Usuario extends Entity<Usuario>{
 	private String senha;
 	
 	private Sexo sexo;
-	
+	@CPF
 	@NotBlank(message = "CPF não pode ser vazio..")
-	@CPF(message = "CPF inválido ")
 	private String cpf;
 	
 	@Email(message = "Email inválido")

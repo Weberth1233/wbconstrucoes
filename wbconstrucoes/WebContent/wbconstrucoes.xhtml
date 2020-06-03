@@ -14,41 +14,50 @@
 	<h:form>
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Nome:" />
-			<h:inputText value="#{usuarioController.usu.nome}"></h:inputText>
+			<h:inputText id="itNome" value="#{usuarioController.entity.nome}"></h:inputText>
 			<h:outputLabel value="Data de Nascimento:" />
 			<h:panelGroup>
 				<h:inputText id="itDataNascimento"
-					value="#{usuarioController.usu.dataNascimento}">
+					value="#{usuarioController.entity.dataNascimento}">
 					<f:convertDateTime pattern="dd/MM/yyyy" type="localDate" />
 				</h:inputText>
 			</h:panelGroup>
 			<h:outputLabel value="Login:" />
-			<h:inputText value="#{usuarioController.usu.login}" required="true"
+			<h:inputText id="itLogin" value="#{usuarioController.entity.login}" required="true"
 				requiredMessage="Login deve ser informado" />
 			<h:outputLabel value="Senha:" />
-			<h:inputSecret value="#{usuarioController.usu.senha}" />
+			<h:inputSecret id="itSenha" value="#{usuarioController.entity.senha}" />
 			<h:outputLabel value="CPF" />
-			<h:inputText value="#{usuarioController.usu.cpf}" required="true"
+			<h:inputText id="itCpf" value="#{usuarioController.entity.cpf}" required="true"
 				requiredMessage="CPF deve ser informado" />
 			<h:outputLabel value="E-mail" />
-			<h:inputText value="#{usuarioController.usu.email}" required="true"
+			<h:inputText id="itEmail" value="#{usuarioController.entity.email}" required="true"
 				requiredMessage="E-mail deve ser informado" />
 			<h:outputLabel value="Sexo:" />
-			<h:selectOneMenu value="#{usuarioController.usu.sexo}">
+			<h:selectOneMenu id="itSexo" value="#{usuarioController.entity.sexo}">
 				<f:selectItems value="#{usuarioController.listaSexo}" var="sexo"
 					itemLabel="#{sexo.descricao}" />
 			</h:selectOneMenu>
 		</h:panelGrid>
 		<h:commandButton id="buttonInsert" value="Inserir"
-			actionListener="#{usuarioController.adicionar}" />
+			actionListener="#{usuarioController.adicionar}"
+			disabled="#{usuarioController.entity.id != null}" />
 		<h:commandButton id="buttonClear" value="Limpar"
 			actionListener="#{usuarioController.limpar}">
-			<f:ajax execute="@this" render="@form formDataTable"/>
-			</h:commandButton>
+			<f:ajax execute="@this" render="@form"></f:ajax>
+		</h:commandButton>
+		<h:commandButton id="buttonUpdate" value="Atualizar"
+			disabled="#{usuarioController.entity.id == null}"
+			actionListener="#{usuarioController.atualizar}">
+		</h:commandButton>
 	</h:form>
 	<h:form id="formDataTable">
 		<h:dataTable id="dataTable" value="#{usuarioController.lista}"
 			var="obj">
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+				<h:outputLabel value="#{obj.id}" />
+			</h:column>
 			<h:column>
 				<f:facet name="header">Nome</f:facet>
 				<h:outputLabel value="#{obj.nome}" />
@@ -64,21 +73,22 @@
 				<h:outputLabel value="#{obj.login}" />
 			</h:column>
 			<h:column>
-				<f:facet name="header">Senha</f:facet>
-				<h:outputLabel value="#{obj.senha}" />
-			</h:column>
-			<h:column>
 				<f:facet name="header">Sexo</f:facet>
 				<h:outputLabel value="#{obj.sexo.descricao}" />
 			</h:column>
-			 <h:column>
-			      <f:facet name="header">CPF</f:facet>
-			      <h:outputLabel value="#{obj.cpf}"/>
-			   </h:column> 
-			   <h:column>
-			      <f:facet name="header">E-mail:</f:facet>
-			      <h:outputLabel value="#{obj.email}"/>
-			   </h:column> 
+			<h:column>
+				<f:facet name="header">CPF</f:facet>
+				<h:outputLabel value="#{obj.cpf}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">E-mail</f:facet>
+				<h:outputLabel value="#{obj.email}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Ação</f:facet>
+				<h:commandLink value="editar" 
+					actionListener="#{usuarioController.editar(obj)}"/>
+			</h:column>
 		</h:dataTable>
 	</h:form>
 </h:body>

@@ -1,5 +1,5 @@
-package br.unitins.wbconstrucoes.controller;
 
+package br.unitins.wbconstrucoes.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,40 +7,44 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import br.unitins.wbconstrucoes.dao.DAO;
+import br.unitins.wbconstrucoes.dao.UsuarioDao;
+import br.unitins.wbconstrucoes.model.Entity;
 import br.unitins.wbconstrucoes.model.Sexo;
 import br.unitins.wbconstrucoes.model.Usuario;
 @Named
 @ViewScoped
-public class UsuarioController implements Serializable {
-	
+public class UsuarioController extends Controller<Usuario> implements Serializable {
+
 	private static final long serialVersionUID = 4229379253264816939L;
-	
-	private Usuario usu;
 	private List<Usuario>lista;
+
+	public UsuarioController() {
+		super(new UsuarioDao());
+	}
 	
-	public void adicionar() {
-		lista.add(usu);
-		limpar();
-	}
-	public void limpar() {
-		usu = null;
-	}
-	public Usuario getUsu() {
-		if(usu == null)
-			usu = new Usuario();
-			return usu;
-	}
-	public void setUsu(Usuario usu) {
-		this.usu = usu;
-	}
 	public List<Usuario> getLista() {
-		if(lista == null)
-			lista = new ArrayList<Usuario>();
+		if(lista == null) {
+			UsuarioDao dao = new UsuarioDao();
+			lista = dao.findAll();
+		}
 		return lista;
 	}
-	public void setLista(List<Usuario> lista) {
-		this.lista = lista;
+	
+	@Override
+	public void limpar() {
+		super.limpar();
+		lista = null;
 	}
+	
+	@Override
+	public Usuario getEntity() {
+		if(entity == null) {
+			entity = new Usuario();
+		}
+		return entity;
+	}
+
 	public Sexo[] getlistaSexo() {
 		return Sexo.values();
 	}
