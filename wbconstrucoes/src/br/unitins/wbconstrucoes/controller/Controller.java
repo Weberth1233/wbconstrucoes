@@ -41,6 +41,14 @@ public abstract class Controller<T extends Entity<T>> implements Serializable{
 		entity = dao.findById(entity.getId());
 		setEntity(entity);
 	}
+	public void deletar() {
+		if(dao.delete(getEntity().getId())){
+			limpar();
+			System.out.println("Deletado com sucesso");
+		}else {
+			System.out.println("Erro na deletação");
+		}
+	}
 	public void limpar() {
 		entity = null;
 	}

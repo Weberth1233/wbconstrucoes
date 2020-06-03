@@ -13,16 +13,24 @@
 	</h:messages>
 	<h:form>
 		<h:panelGrid columns="2">
+			
 			<h:outputLabel value="Login" />
-			<h:inputText value="#{usuarioController.usu.login}"></h:inputText>
+			<h:inputText value="#{loginController.usuario.login}"/>
+			
 			<h:outputLabel value="Senha:" />
-			<h:inputSecret value="#{usuarioController.usu.senha}" required="true"
+			<h:inputSecret value="#{loginController.usuario.senha}" required="true"
 				requiredMessage="Senha deve ser informado" />
+				
 		</h:panelGrid>
+		
 		<h:commandButton id="buttonOpen" value="Entrar"
-			actionListener="#{usuarioController.adicionar}" />
+			action="#{loginController.logar}" >
+			<f:ajax execute="@form" render="@form messages"/>
+		</h:commandButton>
+		
 		<h:commandButton id="buttonClear" value="Limpar"
-			actionListener="#{usuarioController.limpar}">
+			actionListener="#{loginController.limpar}">
+			<f:ajax execute="@this" render="@form messages"/>
 		</h:commandButton>
 	</h:form>
 </h:body>
