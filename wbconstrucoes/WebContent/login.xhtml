@@ -5,33 +5,82 @@
 <h:head>
 	<title>WBconstrucoes</title>
 	<meta charset="UTF-8" />
+	<style>
+		#interface{
+			width:500px;
+		}
+		header{
+			
+		}
+		section{
+			width:250px;
+			position:absolute;
+			position:absolute;
+			left:50%;
+			top:50%;
+			transform:translate(-50%,-50%);
+			padding:150px 50px;
+			background-color:green;
+		}
+		input[type=submit] {
+		  width: 100%;
+		  background-color:#000;
+		  color: white;
+		  padding: 9px 15px;
+		  margin:5px 19px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		}
+		label{
+			font-family:Arial;
+			color:#fff;
+			text-transform:uppercase;
+			text-shadow: 0px 1px 2px;
+		}
+		input{
+			width:100%;
+			color:black;
+			background-color:#fff;
+			padding: 5px 10px;
+			margin:0px;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+	</style>
 </h:head>
 <h:body>
-	<h1>WBconstrucoes</h1>
-	<h2>Tela de Login</h2>
-	<h:messages errorStyle="color:red">
-	</h:messages>
-	<h:form>
-		<h:panelGrid columns="2">
-			
-			<h:outputLabel value="Login" />
-			<h:inputText value="#{loginController.usuario.login}"/>
-			
-			<h:outputLabel value="Senha:" />
-			<h:inputSecret value="#{loginController.usuario.senha}" required="true"
-				requiredMessage="Senha deve ser informado" />
-				
-		</h:panelGrid>
-		
-		<h:commandButton id="buttonOpen" value="Entrar"
-			action="#{loginController.logar}" >
-			<f:ajax execute="@form" render="@form messages"/>
-		</h:commandButton>
-		
-		<h:commandButton id="buttonClear" value="Limpar"
-			actionListener="#{loginController.limpar}">
-			<f:ajax execute="@this" render="@form messages"/>
-		</h:commandButton>
-	</h:form>
+	<div id="interface">
+		<header>
+			<h1>WBconstrucoes</h1>
+			<h2>Tela de Login</h2>
+		</header>
+		<h:messages errorStyle="color:red">
+		</h:messages>
+		<section>
+			<h:form>
+				<h:outputLabel id="messageError" value="#{loginController.message}"
+					style="color:red"></h:outputLabel>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Login" />
+					<h:inputText value="#{loginController.usuario.login}" />
+
+					<h:outputLabel value="Senha:" />
+					<h:inputSecret value="#{loginController.usuario.senha}"
+						required="true" requiredMessage="Senha deve ser informado" />
+				</h:panelGrid>
+
+				<h:commandButton id="buttonOpen" value="Entrar"
+					action="#{loginController.logar}">
+					<f:ajax execute="@form" render="@form messages messageError" />
+				</h:commandButton>
+
+				<h:commandButton id="buttonClear" value="Limpar"
+					actionListener="#{loginController.limpar}">
+					<f:ajax execute="@this" render="@form messages" />
+				</h:commandButton>
+			</h:form>
+		</section>
+	</div>
 </h:body>
 </html>

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import br.unitins.wbconstrucoes.application.Util;
 import br.unitins.wbconstrucoes.dao.DAO;
 import br.unitins.wbconstrucoes.dao.UsuarioDao;
 import br.unitins.wbconstrucoes.model.Entity;
@@ -47,5 +48,15 @@ public class UsuarioController extends Controller<Usuario> implements Serializab
 
 	public Sexo[] getlistaSexo() {
 		return Sexo.values();
+	}
+	@Override
+	public boolean validar() {
+		if(getEntity().getNome().isBlank()) {
+			Util.addErrorMessage("Campod nome deve ser informado!.");
+			return false;
+		}
+		String senha = Util.hashSHA256(getEntity().getSenha());
+		getEntity().setSenha(senha);
+		return true;
 	}
 }

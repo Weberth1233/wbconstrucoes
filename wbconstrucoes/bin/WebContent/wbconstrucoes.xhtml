@@ -8,9 +8,7 @@
 </h:head>
 <h:body>
 	<div id="interface">
-		<h:messages errorStyle="color:red"
-		infoStyle="color:green"
-		warnStyle="color:brown"/>
+		<h:messages errorStyle="color:red"></h:messages>
 		<header>
 			<h1>WBconstrucoes</h1>
 			<h2>Tela de Cadastro</h2>
@@ -19,7 +17,7 @@
 			<h:form>
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Nome:" />
-					<h:inputText id="itNome" value="#{usuarioController.entity.nome}"/>
+					<h:inputText id="itNome" value="#{usuarioController.entity.nome}"></h:inputText>
 					<h:outputLabel value="Data de Nascimento:" />
 					<h:panelGroup>
 						<h:inputText id="itDataNascimento"
@@ -29,11 +27,10 @@
 					</h:panelGroup>
 					<h:outputLabel value="Login:" />
 					<h:inputText id="itLogin" value="#{usuarioController.entity.login}"
-						required="true" requiredMessage="Campo login deve ser informado" />
+						required="true" requiredMessage="Login deve ser informado" />
 					<h:outputLabel value="Senha:" />
 					<h:inputSecret id="itSenha"
-						value="#{usuarioController.entity.senha}" required="true"
-						requiredMessage="Campo senha deve ser informado!." />
+						value="#{usuarioController.entity.senha}" />
 					<h:outputLabel value="CPF" />
 					<h:inputText id="itCpf" value="#{usuarioController.entity.cpf}"
 						required="true" requiredMessage="CPF deve ser informado" />
@@ -87,6 +84,10 @@
 					<h:column>
 						<f:facet name="header">Sexo</f:facet>
 						<h:outputLabel value="#{obj.sexo.descricao}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">CPF</f:facet>
+						<h:outputLabel value="#{obj.cpf}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">E-mail</f:facet>

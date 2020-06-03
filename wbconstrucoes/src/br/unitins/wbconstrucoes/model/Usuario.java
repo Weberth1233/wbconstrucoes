@@ -6,23 +6,24 @@ import javax.validation.constraints.Past;
 import org.hibernate.validator.constraints.br.CPF;
 
 public class Usuario extends Entity<Usuario>{
-	@NotBlank(message = "Campo nome deve ser informado..")
+	@NotBlank(message = "Campo nome deve ser informado!..")
 	private String nome;
 	
-	@Past(message = "Data não pode estar no futuro")
+	@Past(message = "Data não pode estar no futuro!")
 	private LocalDate dataNascimento;
 	
-	@NotBlank(message="Login não pode ser vazio..")
+	@NotBlank(message="Campo login não pode ser vazio!..")
 	private String login;
 	
+	@NotBlank()
 	private String senha;
 	
 	private Sexo sexo;
 	@CPF
-	@NotBlank(message = "CPF não pode ser vazio..")
+	@NotBlank(message = "Campo CPF não pode ser vazio!..")
 	private String cpf;
 	
-	@Email(message = "Email inválido")
+	@Email(message = "Email inválido!")
 	private String email;
 	
 	public String getNome() {

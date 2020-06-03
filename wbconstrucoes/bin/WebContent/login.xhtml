@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>WBconstrucoes</title>
+	<meta charset="UTF-8" />
+</h:head>
+<h:body>
+	<h1>WBconstrucoes</h1>
+	<h2>Tela de Login</h2>
+	<h:messages errorStyle="color:red">
+	</h:messages>
+	<h:form>
+		<h:panelGrid columns="2">
+			
+			<h:outputLabel value="Login" />
+			<h:inputText value="#{loginController.usuario.login}"/>
+			
+			<h:outputLabel value="Senha:" />
+			<h:inputSecret value="#{loginController.usuario.senha}" required="true"
+				requiredMessage="Senha deve ser informado" />
+				
+		</h:panelGrid>
+		
+		<h:commandButton id="buttonOpen" value="Entrar"
+			action="#{loginController.logar}" >
+			<f:ajax execute="@form" render="@form messages"/>
+		</h:commandButton>
+		
+		<h:commandButton id="buttonClear" value="Limpar"
+			actionListener="#{loginController.limpar}">
+			<f:ajax execute="@this" render="@form messages"/>
+		</h:commandButton>
+	</h:form>
+</h:body>
+</html>
