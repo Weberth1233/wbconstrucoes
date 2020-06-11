@@ -8,7 +8,7 @@ import java.util.List;
 
 import br.unitins.wbconstrucoes.model.Entity;
 
-public  abstract class DAO<T extends Entity<T>>{
+public abstract class DAO<T extends Entity<T>>{
 	public abstract boolean create(T entity);
 	public abstract boolean update(T entity);
 	public abstract boolean delete(int id);
@@ -22,10 +22,8 @@ public  abstract class DAO<T extends Entity<T>>{
 			conn = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/wbcontrucoes", "topicos1", "123456");
 			conn.setAutoCommit(false);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return conn;
