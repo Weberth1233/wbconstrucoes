@@ -1,12 +1,17 @@
 package br.unitins.wbconstrucoes.model;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 public class Produto extends Entity<Produto>{
-	@NotBlank(message = "Descrição não deve ser nula")
+	@NotBlank(message ="Descrição deve ser informado!")
 	private String descricao;
-	private float valor;
-	private int qtdEstoque;
+	@Max(value = (long) 999.99, message = "Valor deve ser menor que 999!")
+	@Min(value = 1)
+	private Double valor;
+	private Integer qtdEstoque;
+	@NotBlank(message ="Categoria deve ser informado!")
 	private String categoria;
 	
 	public String getDescricao() {
@@ -15,16 +20,16 @@ public class Produto extends Entity<Produto>{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public float getValor() {
+	public Double getValor() {
 		return valor;
 	}
-	public void setValor(float valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-	public int getQtdEstoque() {
+	public Integer getQtdEstoque() {
 		return qtdEstoque;
 	}
-	public void setQtdEstoque(int qtdEstoque) {
+	public void setQtdEstoque(Integer qtdEstoque) {
 		this.qtdEstoque = qtdEstoque;
 	}
 	public String getCategoria() {
@@ -33,4 +38,6 @@ public class Produto extends Entity<Produto>{
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
+	
+	
 }
