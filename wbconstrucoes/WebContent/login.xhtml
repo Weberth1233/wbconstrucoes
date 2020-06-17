@@ -10,9 +10,7 @@
 		rel="Stylesheet"></link>
 </h:head>
 <h:body>
-	<h:messages errorStyle="color:red" infoStyle="color:green">
-
-	</h:messages>
+	<h:messages errorStyle="color:red" infoStyle="color:green"></h:messages>
 	<div class="login">
 		<h2>Login</h2>
 		<h:form>
@@ -33,22 +31,21 @@
 					<h:message for="itsenha" style="color:red"></h:message>
 				</h:panelGroup>
 			</h:panelGrid>
-
 			<h:commandButton id="buttonOpen" value="Entrar"
 				action="#{loginController.logar}">
 				<f:ajax execute="@form" render="@form messages messageError" />
 			</h:commandButton>
-
 			<h:commandButton id="buttonClear" value="Limpar"
 				actionListener="#{loginController.limpar}">
 				<f:ajax execute="@this" render="@form messages" />
 			</h:commandButton>
 			<h:panelGrid columns="1">
-				<h:commandLink id="buttonredirect" value="Ainda não possui uma conta ?"
-				action="wbconstrucoes.xhtml?faces-redirect=true" >
-				<f:ajax execute="@this" render="wbconstrucoes.xhtml?faces-redirect=true"></f:ajax>
+				<h:commandLink id="linkRedirect"
+					value="Ainda não possui uma conta ?"
+					action="template.xhtml?faces-redirect=true">
+					<f:ajax execute="@this"
+						render="template.xhtml?faces-redirect=true"></f:ajax>
 				</h:commandLink>
-				
 			</h:panelGrid>
 		</h:form>
 	</div>

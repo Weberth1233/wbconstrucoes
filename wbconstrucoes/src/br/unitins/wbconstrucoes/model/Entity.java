@@ -25,7 +25,7 @@ public class Entity<T> {
 			return false;
 		return true;
 	}
-	
+
 	private T getClone() {
 		try {
 			return (T)super.clone();
@@ -35,5 +35,5 @@ public class Entity<T> {
 		}
 		return null;
 	}
-	
+
 }

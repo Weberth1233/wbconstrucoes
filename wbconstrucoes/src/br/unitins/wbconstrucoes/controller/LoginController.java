@@ -20,7 +20,7 @@ public class LoginController {
 		Usuario usu = dao.verificarLoginSenha(getUsuario().getLogin(), getUsuario().getSenha());
 
 		if(usu != null) {
-			return "wbconstrucoes.xhtml?faces-redirect=true";
+			return "template.xhtml?faces-redirect=true";
 		}
 		message = "Login ou senha inválida!.";
 		return message;
