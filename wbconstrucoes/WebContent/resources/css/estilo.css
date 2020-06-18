@@ -9,7 +9,7 @@ body {
 	border:2px solid #000;
 	border-radius:50px 0px 50px 0px;
 	color:#fff;
-	background-color:#800040;
+	background-color:#404040;
 	top:50%; 
 	left:50%;
 	position:absolute;
@@ -45,7 +45,7 @@ label{
 	transition:0.2s;
 }
 .login input:hover{
-	border-bottom:3px solid #ff4d4d;
+	border-bottom:3px solid #fff;
 }
 .login input[type=submit]{
 	border: none;

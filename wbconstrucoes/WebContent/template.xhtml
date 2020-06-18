@@ -17,12 +17,15 @@
 		<div class="campo_busca">
 			<h:form>
 				<h:panelGrid columns="2">
-					<h:outputLabel value="Procurar:"/>
-					<h:inputText id="itbusca" value="#{consultaProdutoController.filtro}" />
+					<h:outputLabel value="Procurar:" />
+					<h:inputText id="itbusca"
+						value="#{consultaProdutoController.filtro}" />
 				</h:panelGrid>
-				
-				<h:commandButton id="buttonSeach" value="Buscar" actionListener="#{consultaProdutoController.pesquisar}">
-					<f:ajax execute="@this" render="consultaprodutos.xhtml?faces-redirect=true"></f:ajax>	
+
+				<h:commandButton id="buttonSeach" value="Buscar"
+					actionListener="#{consultaProdutoController.pesquisar}">
+					<f:ajax execute="@this"
+						render="consultaprodutos.xhtml?faces-redirect=true"></f:ajax>
 				</h:commandButton>
 			</h:form>
 		</div>
@@ -50,20 +53,30 @@
 					<h3>Material de Construção</h3>
 				</figcaption>
 			</figure>
-			<p>Materiais de Construção Seja na construção de uma casa
-				inteira, de uma piscina, de um lavabo para as visitas, ou ainda de
-				um restaurante, de uma padaria: o começo de uma obra é um projeto
-				que visa a realização e construção de uma ideia ou sonho. Para que
-				seus sonhos não se tornem pesadelos, a Telhanorte oferece produtos
-				de qualidade e preços de material de construção com excelentes
-				descontos, para que sua obra valha a pena! Somos uma casa de
-				material de construção completa com opções de bloco estrutural de
-				concreto ou cerâmica, cimento e vergalhão para a primeira fase da
-				obra; que permite a passagem da luz, escada para instalação de telha
-				de fibrocimento, de cerâmica ou de vidro, além de mantas térmicas
-				para isolar sua casa do calor e dos raios ultravioletas. Por meio da
-				loja online você tem acesso ao nosso depósito de material de
-				construção, com centenas de produtos.</p>
+			<p>No menu Inserir, as galerias incluem itens que são projetados
+				para corresponder à aparência geral do documento. Você pode usar
+				essas galerias para inserir tabelas, cabeçalhos, rodapés, listas,
+				folhas de rosto e outros blocos de construção do documento. Quando
+				você cria imagens, gráficos ou diagramas, esses elementos também são
+				coordenados com a aparência atual do documento. Você pode alterar
+				facilmente a formatação do texto selecionado no documento escolhendo
+				uma aparência para o texto selecionado na galeria Estilos Rápidos,
+				na guia Início. Você também pode formatar texto diretamente usando
+				os outros controles na guia Início. A maioria dos controles oferece
+				uma opção entre usar a aparência do tema atual ou usar um formato
+				que você pode especificar. Para alterar a aparência geral do
+				documento, escolha novos elementos Tema na guia Layout da Página.
+				Para alterar as aparências disponíveis na galeria Estilos Rápidos,
+				use o comando Alterar Conjunto Atual de Estilos Rápidos. As galerias
+				Temas e Estilos Rápidos fornecem comandos de redefinição para que
+				você possa sempre restaurar a aparência do documento ao original
+				contido no modelo atual. No menu Inserir, as galerias incluem itens
+				que são projetados para corresponder à aparência geral do documento.
+				Você pode usar essas galerias para inserir tabelas, cabeçalhos,
+				rodapés, listas, folhas de rosto e outros blocos de construção do
+				documento. Quando você cria imagens, gráficos ou diagramas, esses
+				elementos também são coordenados com a aparência atual do documento.
+			</p>
 		</section>
 	</ui:insert>
 
