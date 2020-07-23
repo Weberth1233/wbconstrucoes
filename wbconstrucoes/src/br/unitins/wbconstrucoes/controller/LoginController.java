@@ -3,10 +3,10 @@ package br.unitins.wbconstrucoes.controller;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-import org.hibernate.validator.constraints.ISBN;
-
+import br.unitins.wbconstrucoes.application.Session;
 import br.unitins.wbconstrucoes.application.Util;
 import br.unitins.wbconstrucoes.dao.UsuarioDao;
+
 import br.unitins.wbconstrucoes.model.Usuario;
 @Named
 @RequestScoped
@@ -17,9 +17,10 @@ public class LoginController {
 
 	public String logar() {
 		UsuarioDao dao = new UsuarioDao();
-		Usuario usu = dao.verificarLoginSenha(getUsuario().getLogin(), getUsuario().getSenha());
+		Usuario usu = dao.verificarLoginSenha(getUsuario().getLogin(),getUsuario().getSenha());
 
 		if(usu != null) {
+			Session.getInstance().setAttribute("usuarioLogado", usu);
 			return "template.xhtml?faces-redirect=true";
 		}
 		message = "Login ou senha inválida!.";

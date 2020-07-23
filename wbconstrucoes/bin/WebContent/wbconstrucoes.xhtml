@@ -1,23 +1,26 @@
-<!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
+
 	<title>WBconstrucoes</title>
 	<meta charset="UTF-8" />
 </h:head>
-<h:body>
-	<div id="interface">
-		<h:messages errorStyle="color:red"></h:messages>
+
+<ui:composition template="template.xhtml">
+	<ui:define name="conteudo">
+		<h:messages errorStyle="color:red" infoStyle="color:green"
+			warnStyle="color:brown" />
 		<header>
-			<h1>WBconstrucoes</h1>
 			<h2>Tela de Cadastro</h2>
 		</header>
 		<section>
 			<h:form>
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Nome:" />
-					<h:inputText id="itNome" value="#{usuarioController.entity.nome}"></h:inputText>
+					<h:inputText id="itNome" value="#{usuarioController.entity.nome}" />
 					<h:outputLabel value="Data de Nascimento:" />
 					<h:panelGroup>
 						<h:inputText id="itDataNascimento"
@@ -27,10 +30,11 @@
 					</h:panelGroup>
 					<h:outputLabel value="Login:" />
 					<h:inputText id="itLogin" value="#{usuarioController.entity.login}"
-						required="true" requiredMessage="Login deve ser informado" />
+						required="true" requiredMessage="Campo login deve ser informado" />
 					<h:outputLabel value="Senha:" />
 					<h:inputSecret id="itSenha"
-						value="#{usuarioController.entity.senha}" />
+						value="#{usuarioController.entity.senha}" required="true"
+						requiredMessage="Campo senha deve ser informado!." />
 					<h:outputLabel value="CPF" />
 					<h:inputText id="itCpf" value="#{usuarioController.entity.cpf}"
 						required="true" requiredMessage="CPF deve ser informado" />
@@ -86,10 +90,6 @@
 						<h:outputLabel value="#{obj.sexo.descricao}" />
 					</h:column>
 					<h:column>
-						<f:facet name="header">CPF</f:facet>
-						<h:outputLabel value="#{obj.cpf}" />
-					</h:column>
-					<h:column>
 						<f:facet name="header">E-mail</f:facet>
 						<h:outputLabel value="#{obj.email}" />
 					</h:column>
@@ -101,6 +101,6 @@
 				</h:dataTable>
 			</h:form>
 		</section>
-	</div>
-</h:body>
+	</ui:define>
+</ui:composition>
 </html>

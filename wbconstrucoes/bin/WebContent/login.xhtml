@@ -5,33 +5,49 @@
 <h:head>
 	<title>WBconstrucoes</title>
 	<meta charset="UTF-8" />
+	<h:outputStylesheet library="css" name="estilo.css" />
+	<link href="https://fonts.googleapis.com/css?family=Tangerine"
+		rel="Stylesheet"></link>
 </h:head>
 <h:body>
-	<h1>WBconstrucoes</h1>
-	<h2>Tela de Login</h2>
-	<h:messages errorStyle="color:red">
-	</h:messages>
-	<h:form>
-		<h:panelGrid columns="2">
-			
-			<h:outputLabel value="Login" />
-			<h:inputText value="#{loginController.usuario.login}"/>
-			
-			<h:outputLabel value="Senha:" />
-			<h:inputSecret value="#{loginController.usuario.senha}" required="true"
-				requiredMessage="Senha deve ser informado" />
-				
-		</h:panelGrid>
-		
-		<h:commandButton id="buttonOpen" value="Entrar"
-			action="#{loginController.logar}" >
-			<f:ajax execute="@form" render="@form messages"/>
-		</h:commandButton>
-		
-		<h:commandButton id="buttonClear" value="Limpar"
-			actionListener="#{loginController.limpar}">
-			<f:ajax execute="@this" render="@form messages"/>
-		</h:commandButton>
-	</h:form>
+	<h:messages errorStyle="color:red" infoStyle="color:green"></h:messages>
+	<div class="login">
+		<h2>Login</h2>
+		<h:form>
+			<h:outputLabel id="messageError" value="#{loginController.message}"
+				style="color:red"></h:outputLabel>
+			<h:panelGrid columns="2">
+				<h:panelGroup>
+					<h:outputLabel value="Login:" />
+					<h:inputText id="itlogin" value="#{loginController.usuario.login}"
+						required="true" requiredMessage="Login não informado!" />
+					<h:panelGrid columns="1">
+						<h:message for="itlogin" style="color:red"></h:message>
+					</h:panelGrid>
+					<h:outputLabel value="Senha:" />
+					<h:inputSecret id="itsenha"
+						value="#{loginController.usuario.senha}" required="true"
+						requiredMessage="Senha não informado!" />
+					<h:message for="itsenha" style="color:red"></h:message>
+				</h:panelGroup>
+			</h:panelGrid>
+			<h:commandButton id="buttonOpen" value="Entrar"
+				action="#{loginController.logar}">
+				<f:ajax execute="@form" render="@form messages messageError" />
+			</h:commandButton>
+			<h:commandButton id="buttonClear" value="Limpar"
+				actionListener="#{loginController.limpar}">
+				<f:ajax execute="@this" render="@form messages" />
+			</h:commandButton>
+			<h:panelGrid columns="1">
+				<h:commandLink id="linkRedirect"
+					value="Ainda não possui uma conta ?"
+					action="wbconstrucoes.xhtml?faces-redirect=true">
+					<f:ajax execute="@this"
+						render="wbconstrucoes.xhtml?faces-redirect=true"></f:ajax>
+				</h:commandLink>
+			</h:panelGrid>
+		</h:form>
+	</div>
 </h:body>
 </html>

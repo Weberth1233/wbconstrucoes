@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+	<title>WBconstrucoes</title>
+	<meta charset="UTF-8" />
+</h:head>
+
+<h:body>
+	<h:messages errorStyle="color:red" infoStyle="color:green"
+		warnStyle="color:brown" />
+	<header>
+		<h1>WBconstrucoes</h1>
+		<h2>Tela de Cadastro Produtos</h2>
+	</header>
+	<h:form>
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Descrição:" />
+			<h:inputText id="itdesc"
+				value="#{produtoController.entity.descricao}" />
+			<h:outputLabel value="Preço:" />
+			<h:inputText id="itpreco" value="#{produtoController.entity.valor}" 
+			required="true" requiredMessage="Preço deve ser informado!" />
+			<h:outputLabel value="Quantidade em Estoque:" />
+			<h:inputText id="itestoque"
+				value="#{produtoController.entity.qtdEstoque}"
+				required="true" requiredMessage="Estoque deve ser informado!" />
+			<h:outputLabel value="Categoria:" />
+			<h:inputText id="itcategoria"
+				value="#{produtoController.entity.categoria}" />
+		</h:panelGrid>
+		<h:commandButton id="buttonInserir" value="Inserir"
+			actionListener="#{produtoController.adicionar}"
+			disabled="#{produtoController.entity.id != null}" />
+		<h:commandButton id="buttonUpdate" value="Atualizar"
+			actionListener="#{produtoController.atualizar}"
+			disabled="#{produtoController.entity.id == null}" />
+		<h:commandButton id="buttonDelete" value="Deletar"
+			actionListener="#{produtoController.deletar}"
+			disabled="#{produtoController.entity.id == null}" />
+		<h:commandButton id="buttonClear" value="Limpar"
+			actionListener="#{produtoController.limpar}" />
+		<h:panelGrid columns="1">
+			<h:commandLink value="Consultar Produto"
+				action="consultaprodutos.xhtml?faces-redirect=true">
+				<f:ajax execute="@this" render="consultaprodutos.xhtml?faces-redirect=true"></f:ajax>	
+			</h:commandLink>
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>
