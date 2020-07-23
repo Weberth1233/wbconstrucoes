@@ -18,26 +18,21 @@ public class ConsultaProdutoController implements Serializable {
 	private String filtro;
 	private List<Produto> listaProduto;
 	
-	public void pesquisar() {
+	public String pesquisar() {
 		ProdutoDao dao = new ProdutoDao();
 		listaProduto = dao.getFiltroCategoria(getFiltro());
+		
+		Flash flash = FacesContext.getCurrentInstance().
+				getExternalContext().getFlash();
+
+		flash.put("flashProduto", listaProduto);
+		return "consultaprodutos.xhtml?faces-redirect=true";
 	}
 	
 	public String novoProduto() {
 		return "produtos.xhtml?faces-redirect=true";
 	}
 	
-	public String editar(Produto produto) {
-		ProdutoDao dao = new ProdutoDao();
-		produto = dao.findById(produto.getId());
-		
-		Flash flash = FacesContext.getCurrentInstance().
-						getExternalContext().getFlash();
-		
-		flash.put("flashProduto", produto);
-		return "produtos.xhtml?faces-redirect=true";
-	}
-
 	public List<Produto> getListaProduto() {
 		if (listaProduto == null) {
 			listaProduto = new ArrayList<Produto>();
