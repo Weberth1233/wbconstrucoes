@@ -25,7 +25,7 @@ header {
 }
 
 header h1 {
-	font-size: 20pt;
+	font-size: 28pt;
 	color: #fff;
 }
 
@@ -127,9 +127,9 @@ nav a:hover {
 	color: #808080;
 }
 
-@media all and (min-width:1000px) {
+@media all and (min-width:1200px) {
 	body {
-		width: 1000px;
+		width: 1200px;
 		margin: auto;
 	}
 	.campo_busca input[type=text] {
@@ -153,6 +153,10 @@ nav a:hover {
 		display: block;
 		padding: 10px;
 		margin: 0px;
+	}
+	header h1 {
+		font-size:20pt;
+		color: #fff;
 	}
 	.campo_busca input[type=text] {
 		width: 100%;
