@@ -28,7 +28,10 @@ public class SecurityFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		
-		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+		chain.doFilter(request, response);
+		return;
+		
+		/*HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		String url = httpServletRequest.getRequestURI();
 		System.out.println(url);
 		if(url.equals("/wbconstrucoes/faces/login.xhtml")) {
@@ -36,20 +39,20 @@ public class SecurityFilter implements Filter {
 			return;
 		}
 		/*Criando a sessão e adicionando o usuario nela*/
-		HttpSession session = httpServletRequest.getSession(false);
+		/*HttpSession session = httpServletRequest.getSession(false);
 		
 		Usuario usuario = null;
 		/*Se a sessao estiver funcionado eu vou adicionar um usuario a sessão*/
-		if(session != null) {
+		/*if(session != null) {
 			usuario = (Usuario) session.getAttribute("usuarioLogado");
 		}
 		if(usuario == null) {
 			((HttpServletResponse) response).sendRedirect("/wbconstrucoes/faces/login.xhtml");
 		}else {
-			/*Para seguir o fluxo das paginas*/
+			/*Para seguir o fluxo das paginas
 			chain.doFilter(request, response);
 			return;
-		}
+		}*/
 	}
 	
 	@Override

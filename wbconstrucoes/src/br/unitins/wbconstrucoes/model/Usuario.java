@@ -6,6 +6,9 @@ import javax.validation.constraints.Past;
 import org.hibernate.validator.constraints.br.CPF;
 
 public class Usuario extends Entity<Usuario>{
+
+	private static final long serialVersionUID = 7654947459841948514L;
+
 	@NotBlank(message = "Campo nome deve ser informado!..")
 	private String nome;
 	

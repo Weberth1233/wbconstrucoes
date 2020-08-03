@@ -3,7 +3,6 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-
 <h:head>
 	<title>WBconstrucoes</title>
 	<meta charset="UTF-8" />
@@ -14,13 +13,12 @@
 		<h:messages errorStyle="color:red" infoStyle="color:green"
 			warnStyle="color:brown" />
 		<header>
-			<h1>WBconstrucoes</h1>
 			<h2>Consultar Produtos</h2>
 		</header>
 		<section>
 			<h:form id="formDataTable">
 				<h:dataTable id="dataTable"
-					value="#{consultaProdutoController.}" var="obj">
+					value="#{consultaProdutoController.listaProduto}" var="obj">
 					<h:column>
 						<f:facet name="header">Descrição:</f:facet>
 						<h:outputLabel value="#{obj.descricao}" />

@@ -1,12 +1,16 @@
 body {
-	background: linear-gradient(to top, #fff 50%, #404040 0);
+	background: linear-gradient(to top, #fafafa 50%, #24292e 0);
 }
 
 .wrapper {
 	position: absolute;
-	left: 95%;
+	left: 100%;
 	top: 50%;
-	transform: translate(-95%, -50%);
+	transform: translate(-100%, -50%);
+}
+
+.campo_busca input[type=submit] {
+	opacity: 0;
 }
 
 .wrapper label {
@@ -15,35 +19,31 @@ body {
 
 header {
 	position: relative;
-	background-color: #404040;
-	font-family: arial;
+	height: 70px;
+	background-color: #24292e;
 	text-shadow: 5px 5px 3px black;
 	padding: 8px;
 	color: #fff;
 	border: 2px solid #000;
 	text-align: left;
+	background-color: #24292e;
 }
 
 header h1 {
-	font-size: 28pt;
+	font-family: Madefor, helvetica-neue-latin, helvetica-neue-cyrillic,
+		Helvetica, Arial, sans-serif;
+	font-size: 25pt;
 	color: #fff;
-}
-
-.campo_busca input[type=text] {
-	width: 100%;
-	height: 25px;
-	border: 2px solid black;
-	border-radius: 25px;
 }
 
 figcaption h3 {
 	font-family: arial;
 	text-shadow: 1px 1px 1px black;
 	text-align: center;
-}
-
+} 
 img {
 	max-width: 100%;
+	width: 100%;
 	height: 280px;
 }
 
@@ -63,20 +63,21 @@ figure.foto-legenda figcaption {
 
 figure.foto-legenda {
 	position: relative;
-	border: 8px solid white;
+	border: 8px solid #000;
 	box-shadow: 1px 1px 4px black;
 }
 
 p {
 	text-align: justify;
 	text-indent: 50px;
+	font-family: Open Sans;
+	padding:1px;
 }
 
 section {
 	background-color: #fff;
 	font-family: Arial;
 	padding: 10px;
-	border: 2px solid black;
 }
 
 footer {
@@ -89,7 +90,7 @@ footer {
 
 footer p {
 	text-align: center;
-	font-size: 10pt;
+	font-size: 12pt;
 }
 
 nav {
@@ -132,17 +133,27 @@ nav a:hover {
 		width: 1200px;
 		margin: auto;
 	}
+	.campo_busca {
+		position: absolute;
+		left: 50%;
+		top: 100%;
+		transform: translate(-50%, -100%);
+	}
 	.campo_busca input[type=text] {
-		width: 200%;
+		width: 250%;
 		height: 25px;
-		border: 2px solid black;
-		border-radius: 25px;
+		font-size:12pt;
+		padding-left: 30px;
+		padding: 2px;
 	}
 }
 /*MAX resoluções menores ou até 480px*/
 @media all and (max-width:485px) {
 	body {
 		margin: auto;
+	}
+	header {
+		height: auto;
 	}
 	nav {
 		/*Para que mostre todos os links*/
@@ -155,13 +166,14 @@ nav a:hover {
 		margin: 0px;
 	}
 	header h1 {
-		font-size:20pt;
+		font-size: 25pt;
 		color: #fff;
 	}
 	.campo_busca input[type=text] {
-		width: 100%;
+		width: 110%;
 		height: 25px;
-		border: 2px solid black;
-		border-radius: 25px;
+		font-size:12pt;
+		padding-left:8px;
+		margin-right:0px;
 	}
 }

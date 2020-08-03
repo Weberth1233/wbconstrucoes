@@ -1,6 +1,10 @@
 package br.unitins.wbconstrucoes.model;
 
-public class Entity<T> {
+import java.io.Serializable;
+
+public class Entity<T> implements Serializable{
+
+	private static final long serialVersionUID = -5240717863862696150L;
 	private Integer id;
 
 	public Integer getId() {

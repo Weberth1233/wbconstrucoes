@@ -1,7 +1,30 @@
-.cadastro_cliente label {
-	color: #fff;
+body{
+	margin:0;
+	padding: 0;
+	border: 0;	
 }
-
+.cadastro_cliente label {
+	color:#fff;
+	font-size:12pt;
+}
+header{
+	background-color:#24292e;
+	color:#fff;
+	padding:3px;
+	
+}
+.cabecalho{
+	display:flex;
+	justify-content:space-around;
+}
+header div.cabecalho a{
+	margin-top:15px;
+	color:#fff;
+}
+.cadastro_cliente table  h3{
+	color:#fff;
+	font-size:15pt;
+}
 .cadastro_cliente {
 	width:100%;
 	background-color:#fafafa;
@@ -17,17 +40,11 @@
 	transform: translateX(-50%);
 	border: 2px solid #000;
 	border-radius: 50px 0px 50px 0px;
-	background-color: #404040;
-	padding:15px 90px 15px 90px;
+	background-color:#24292e;
+	padding:60px;
+	padding-top:15px;
 	border-radius: 12px 22px;
 	box-shadow:4px 4px 10px 2px #000;
-}
-
-.botoes {
-	width:50%;
-	position: relative;
-	left:68%;
-	transform:translateX(-68%);
 }
 
 .cadastro_cliente input[type=submit] {
@@ -38,8 +55,7 @@
 	color: #fff;
 	background: #000;
 	border-radius: 20px;
-	margin-top: 10px;
-	margin-right: 10px;
+	margin-top:5px;
 }
 
 .cadastro_cliente input[type=submit]:hover {
@@ -49,8 +65,8 @@
 }
 
 .cadastro_cliente input[type=text], input[type="password"] {
-	width:160px;
+	width:200px;
+	height:25px;
 	font-size:12pt;
-	border-radius:32px 22px 12px;
-	padding-left:8px;
+	padding-left:5px;
 }

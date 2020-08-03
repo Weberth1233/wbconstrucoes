@@ -5,6 +5,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 public class Produto extends Entity<Produto>{
+	
+	private static final long serialVersionUID = -658538154954676024L;
 	@NotBlank(message ="Descrição deve ser informado!")
 	private String descricao;
 	@Max(value = (long) 999.99, message = "Valor deve ser menor que 999!")
