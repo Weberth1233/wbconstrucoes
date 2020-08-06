@@ -3,7 +3,6 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-
 <h:head>
 	<meta charset="utf-8" name="viewport"
 		content="width=device-width, initial-scale=1"
@@ -28,15 +27,12 @@
 		</div>
 		<div class="campo_busca">
 			<h:form>
-				<h:panelGrid columns="2">
-					<h:inputText id="itbusca" value="#{templateController.auxpesquisa}">
-						<f:passThroughAttribute name="placeholder"
-							value="O que deseja pesquisar ?" />
-					</h:inputText>
-				</h:panelGrid>
-				<h:commandButton value="Buscar"
-					action="#{templateController.pesquisa}">
-				</h:commandButton>
+				<h:inputText id="itbusca" value="#{templateController.auxpesquisa}">
+					<f:passThroughAttribute name="placeholder"
+						value="O que deseja pesquisar?" />
+				</h:inputText>
+				<h:commandButton action="#{templateController.pesquisa}"
+					value="&#128269;"></h:commandButton>
 			</h:form>
 		</div>
 	</header>
@@ -45,11 +41,10 @@
 		<nav>
 			<ul>
 				<li><a href="template.xhtml">Home</a></li>
-				<li><a href="produtocad.xhtml">Cadastro de Produtos</a></li>
-				<li><a href="consultaprodutos.xhtml">Consultar Produtos</a></li>
 				<li><a href="venda.xhtml">Venda de Produtos</a></li>
+				<li><a href="produtocad.xhtml">Cadastro Produto</a></li>
 				<li><a href="carrinho.xhtml">Carrinho</a></li>
-				<li><a href="">Histórico</a></li>
+				<li><a href="historico.xhtml">Histórico</a></li>
 			</ul>
 		</nav>
 	</ui:insert>

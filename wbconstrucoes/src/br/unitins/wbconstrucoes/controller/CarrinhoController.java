@@ -33,14 +33,16 @@ public class CarrinhoController implements Serializable {
 			List<ItemVenda>carrinho = 
 					(ArrayList<ItemVenda>)Session.getInstance().getAttribute("carrinho");
 			
-			if(carrinho == null) 
+			if(carrinho == null) {
 				carrinho = new ArrayList<ItemVenda>();
+			}
 			venda.setListaItemVenda(carrinho);
 			
 		return venda;
 	}
+	
 	public void remover(int idProduto) {
-		
+		Session.getInstance().setAttribute(idProduto, null);
 	}
 
 	public void setVenda(Venda venda) {

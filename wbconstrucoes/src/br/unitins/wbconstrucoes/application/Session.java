@@ -35,4 +35,9 @@ public class Session {
 		getExternalContext().invalidateSession();
 	}
 
+	public void setAttribute(int idProduto, Object value) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

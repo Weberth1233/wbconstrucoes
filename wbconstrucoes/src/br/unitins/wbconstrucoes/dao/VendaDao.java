@@ -6,11 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
-
-
-import br.unitins.wbconstrucoes.model.Entity;
 import br.unitins.wbconstrucoes.model.ItemVenda;
+import br.unitins.wbconstrucoes.model.Sexo;
+import br.unitins.wbconstrucoes.model.Usuario;
 import br.unitins.wbconstrucoes.model.Venda;
 
 public class VendaDao extends DAO<Venda>{
@@ -112,11 +112,124 @@ public class VendaDao extends DAO<Venda>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public List<Venda> findByUsuario(int idUsuario) {
+		List<Venda> listaVenda = new ArrayList<Venda>();
+		Connection conn = getConnetion();
+		
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT ");
+		sql.append("  v.id, ");
+		sql.append("  v.data, ");
+		sql.append("  u.id as idusuario, ");
+		sql.append("  u.nome, ");
+		sql.append("  u.datanascimento, ");
+		sql.append("  u.login,  ");
+		sql.append("  u.senha, ");
+		sql.append("  u.cpf, ");
+		sql.append("  u.email, ");
+		sql.append("  u.sexo ");					
+		sql.append("FROM ");
+		sql.append("  public.venda v, ");
+		sql.append("  public.usuario u ");
+		sql.append("WHERE ");
+		sql.append("  v.idusuario = u.id AND ");
+		sql.append("  u.id = ? ");
+		
+		PreparedStatement stat = null;
+		try {
+			stat = conn.prepareStatement(sql.toString());
 
+			stat.setInt(1, idUsuario);
+			
+			ResultSet rs = stat.executeQuery();
+			
+			while(rs.next()) {
+				Venda venda = new Venda();
+				venda.setId(rs.getInt("id"));
+				venda.setData(rs.getDate("data").toLocalDate());
+				venda.setUsuario(new Usuario());
+				venda.getUsuario().setId(rs.getInt("idusuario"));
+				venda.getUsuario().setNome(rs.getString("nome"));
+				Date data = rs.getDate("datanascimento");
+				venda.getUsuario().setDataNascimento(data == null? null : data.toLocalDate());
+				venda.getUsuario().setLogin(rs.getString("login"));
+				venda.getUsuario().setSenha(rs.getString("senha"));
+				venda.getUsuario().setCpf(rs.getString("cpf"));
+				venda.getUsuario().setEmail(rs.getString("email"));
+				venda.getUsuario().setSexo(Sexo.valueOf(rs.getInt("sexo")));
+				// e os itens de venda?!!?
+				
+				ItemVendaDao dao = new ItemVendaDao();
+				venda.setListaItemVenda(dao.findByVenda(venda));
+				listaVenda.add(venda);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			rollback(conn);
+		} finally {
+			closeStatement(stat);
+			closeConnection(conn);
+		}
+		return listaVenda;
+	}
+	
 	@Override
 	public Venda findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Venda venda = null;
+		Connection conn = getConnetion();
+		
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT ");
+		sql.append("  v.id, ");
+		sql.append("  v.data, ");
+		sql.append("  u.id as idusuario, ");
+		sql.append("  u.nome, ");
+		sql.append("  u.datanascimento, ");
+		sql.append("  u.login,  ");
+		sql.append("  u.senha, ");
+		sql.append("  u.cpf, ");
+		sql.append("  u.email, ");
+		sql.append("  u.sexo ");					
+		sql.append("FROM ");
+		sql.append("  public.venda v, ");
+		sql.append("  public.usuario u ");
+		sql.append("WHERE ");
+		sql.append("  v.idusuario = u.id AND ");
+		sql.append("  u.id = ? ");
+
+		
+		PreparedStatement stat = null;
+		try {
+			stat = conn.prepareStatement(sql.toString());
+			stat.setInt(1, id);
+			
+			ResultSet rs = stat.executeQuery();
+			while(rs.next()) {
+				venda = new Venda();
+				venda.setId(rs.getInt("id"));
+				venda.setData(rs.getDate("data").toLocalDate());
+				venda.setUsuario(new Usuario());
+				venda.getUsuario().setId(rs.getInt("idusuario"));
+				venda.getUsuario().setNome(rs.getString("nome"));
+				Date data = rs.getDate("datanascimento");
+				venda.getUsuario().setDataNascimento(data == null? null : data.toLocalDate());
+				venda.getUsuario().setLogin(rs.getString("login"));
+				venda.getUsuario().setSenha(rs.getString("senha"));
+				venda.getUsuario().setCpf(rs.getString("cpf"));
+				venda.getUsuario().setEmail(rs.getString("email"));
+				venda.getUsuario().setSexo(Sexo.valueOf(rs.getInt("sexo")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			rollback(conn);
+		} finally {
+			closeStatement(stat);
+			closeConnection(conn);
+		}
+		return venda;
 	}
 
 }
