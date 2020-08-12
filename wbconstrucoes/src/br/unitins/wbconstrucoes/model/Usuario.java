@@ -21,6 +21,8 @@ public class Usuario extends Entity<Usuario>{
 	@NotBlank()
 	private String senha;
 	
+	private TipoUsuario tipoUsuario;
+	
 	private Sexo sexo;
 	@CPF
 	@NotBlank(message = "Campo CPF não pode ser vazio!..")
@@ -52,6 +54,12 @@ public class Usuario extends Entity<Usuario>{
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 	public Sexo getSexo() {
 		return sexo;

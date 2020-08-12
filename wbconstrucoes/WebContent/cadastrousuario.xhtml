@@ -49,10 +49,17 @@
 					<h:inputText id="itEmail" value="#{usuarioController.entity.email}"
 						required="true" requiredMessage="E-mail deve ser informado" />
 					<h:outputLabel value="Sexo" />
+					
 					<h:selectOneMenu id="itSexo"
 						value="#{usuarioController.entity.sexo}">
 						<f:selectItems value="#{usuarioController.listaSexo}" var="sexo"
 							itemLabel="#{sexo.descricao}" />
+					</h:selectOneMenu>
+					
+					<h:selectOneMenu id="itTipoUsuario"
+						value="#{usuarioController.entity.tipoUsuario}">
+						<f:selectItems value="#{usuarioController.listaTipoUsuario}" var="tipo"
+							itemLabel="#{tipo.label}" />
 					</h:selectOneMenu>
 					<div class="botoes">
 						<h:commandButton id="buttonInsert" value="Cadastre-se"

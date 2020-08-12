@@ -17,7 +17,8 @@ public class LoginController {
 
 	public String logar() {
 		UsuarioDao dao = new UsuarioDao();
-		Usuario usu = dao.verificarLoginSenha(getUsuario().getLogin(),getUsuario().getSenha());
+		Usuario usu = dao.verificarLoginSenha(getUsuario().getLogin(),
+				Util.hashSHA256(getUsuario().getSenha()));
 
 		if(usu != null) {
 			Session.getInstance().setAttribute("usuarioLogado", usu);

@@ -14,6 +14,7 @@ import br.unitins.wbconstrucoes.application.Util;
 import br.unitins.wbconstrucoes.dao.ProdutoDao;
 import br.unitins.wbconstrucoes.model.ItemVenda;
 import br.unitins.wbconstrucoes.model.Produto;
+import br.unitins.wbconstrucoes.model.Venda;
 @Named
 @ViewScoped
 
@@ -44,6 +45,8 @@ public class VendaProdutoController implements Serializable {
 			item.setProduto(produto);
 			item.setValor(produto.getValor());
 			
+			Venda venda= new Venda();
+			venda.setTotalVenda(item.getValor());
 			carrinho.add(item);
 			/*Atualizando carrinho na sessão*/
 			Session.getInstance().setAttribute("carrinho", carrinho);

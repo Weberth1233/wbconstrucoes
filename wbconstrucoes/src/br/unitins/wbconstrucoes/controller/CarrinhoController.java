@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -60,16 +62,16 @@ public class CarrinhoController implements Serializable {
 			Util.addErrorMessage("Usuario não está logado, não é possivel finalizar venda!");
 			return;
 		}
-		Venda venda= new Venda();
+		Venda venda = new Venda();
 		venda.setData(LocalDate.now());
 		venda.setUsuario(usuario);
 		List<ItemVenda>carrinho = (ArrayList<ItemVenda>)Session.getInstance().getAttribute("carrinho");
+		
 		venda.setListaItemVenda(carrinho);
 		
 		VendaDao dao = new VendaDao();
 		if(dao.create(venda)) {
 			Util.addInfoMessage("Compra finalizada com sucesso!");
-			Session.getInstance().setAttribute("carrinho", null);
 		}else {
 			Util.addErrorMessage("Ouve algum erro durante a compra!");
 		}

@@ -7,11 +7,13 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+
 import br.unitins.wbconstrucoes.application.Util;
 import br.unitins.wbconstrucoes.dao.DAO;
 import br.unitins.wbconstrucoes.dao.UsuarioDao;
 import br.unitins.wbconstrucoes.model.Entity;
 import br.unitins.wbconstrucoes.model.Sexo;
+import br.unitins.wbconstrucoes.model.TipoUsuario;
 import br.unitins.wbconstrucoes.model.Usuario;
 @Named
 @ViewScoped
@@ -45,7 +47,11 @@ public class UsuarioController extends Controller<Usuario> implements Serializab
 		}
 		return entity;
 	}
-
+	
+	public TipoUsuario[] getListaTipoUsuario() {
+		return TipoUsuario.values();
+	}
+	
 	public Sexo[] getlistaSexo() {
 		return Sexo.values();
 	}

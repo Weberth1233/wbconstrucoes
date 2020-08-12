@@ -15,10 +15,6 @@
 
 				<h:dataTable value="#{historicoVendaController.listaVenda}"
 					var="obj">
-					<h:column>
-						<f:facet name="header">Id</f:facet>
-						<h:outputLabel value="#{obj.id}" />
-					</h:column>
 
 					<h:column>
 						<f:facet name="header">Data</f:facet>
@@ -31,7 +27,6 @@
 						<f:facet name="header">Cliente</f:facet>
 						<h:outputLabel value="#{obj.usuario.nome}" />
 					</h:column>
-
 					<h:column>
 						<f:facet name="header">Total da Venda</f:facet>
 						<h:outputLabel value="#{obj.totalVenda}">

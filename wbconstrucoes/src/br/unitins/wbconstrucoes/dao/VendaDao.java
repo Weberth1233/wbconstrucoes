@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import br.unitins.wbconstrucoes.model.ItemVenda;
 import br.unitins.wbconstrucoes.model.Sexo;
+import br.unitins.wbconstrucoes.model.TipoUsuario;
 import br.unitins.wbconstrucoes.model.Usuario;
 import br.unitins.wbconstrucoes.model.Venda;
 
@@ -128,7 +129,8 @@ public class VendaDao extends DAO<Venda>{
 		sql.append("  u.senha, ");
 		sql.append("  u.cpf, ");
 		sql.append("  u.email, ");
-		sql.append("  u.sexo ");					
+		sql.append("  u.sexo, ");
+		sql.append("  u.tipousuario ");
 		sql.append("FROM ");
 		sql.append("  public.venda v, ");
 		sql.append("  public.usuario u ");
@@ -158,6 +160,7 @@ public class VendaDao extends DAO<Venda>{
 				venda.getUsuario().setCpf(rs.getString("cpf"));
 				venda.getUsuario().setEmail(rs.getString("email"));
 				venda.getUsuario().setSexo(Sexo.valueOf(rs.getInt("sexo")));
+				venda.getUsuario().setTipoUsuario(TipoUsuario.valueOf(rs.getInt("tipousuario")));
 				// e os itens de venda?!!?
 				
 				ItemVendaDao dao = new ItemVendaDao();
@@ -191,7 +194,8 @@ public class VendaDao extends DAO<Venda>{
 		sql.append("  u.senha, ");
 		sql.append("  u.cpf, ");
 		sql.append("  u.email, ");
-		sql.append("  u.sexo ");					
+		sql.append("  u.sexo, ");
+		sql.append("  u.tipousuario ");					
 		sql.append("FROM ");
 		sql.append("  public.venda v, ");
 		sql.append("  public.usuario u ");
@@ -220,6 +224,7 @@ public class VendaDao extends DAO<Venda>{
 				venda.getUsuario().setCpf(rs.getString("cpf"));
 				venda.getUsuario().setEmail(rs.getString("email"));
 				venda.getUsuario().setSexo(Sexo.valueOf(rs.getInt("sexo")));
+				venda.getUsuario().setTipoUsuario(TipoUsuario.valueOf(rs.getInt("tipousuario")));
 			}
 			
 		} catch (SQLException e) {
