@@ -7,43 +7,38 @@
 <ui:composition template="template.xhtml">
 	<ui:define name="conteudo">
 		<header>
-			<h2>Histórico de Vendas</h2>
+			<h2 style="text-align: center;">Histórico de Vendas</h2>
 		</header>
-		<section>
-			<h:form>
-				<h:messages style="color:red" />
+		<center>
+			<section>
+				<h:form>
+					<h:messages style="color: #fff; background-color: green" />
 
-				<h:dataTable value="#{historicoVendaController.listaVenda}"
-					var="obj">
+					<h:dataTable value="#{historicoVendaController.listaVenda}"
+						var="obj">
 
-					<h:column>
-						<f:facet name="header">Data</f:facet>
-						<h:outputLabel value="#{obj.data}">
-							<f:convertDateTime type="localDate" pattern="dd-MM-yyyy" />
-						</h:outputLabel>
-					</h:column>
+						<h:column>
+							<f:facet name="header">Data</f:facet>
+							<h:outputLabel value="#{obj.data}">
+								<f:convertDateTime type="localDate" pattern="dd-MM-yyyy" />
+							</h:outputLabel>
+						</h:column>
 
-					<h:column>
-						<f:facet name="header">Cliente</f:facet>
-						<h:outputLabel value="#{obj.usuario.nome}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Total da Venda</f:facet>
-						<h:outputLabel value="#{obj.totalVenda}">
-							<f:convertNumber locale="pt_BR" currencySymbol="R$"
-								type="currency" />
-						</h:outputLabel>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Ação</f:facet>
-						<h:commandButton value="Detalhes ..."
-							action="#{historicoVendaController.detalhes(obj)}">
-							<f:ajax execute="@this" render="@none" />
-						</h:commandButton>
-					</h:column>
-				</h:dataTable>
-			</h:form>
-		</section>
+						<h:column>
+							<f:facet name="header">Cliente</f:facet>
+							<h:outputLabel value="#{obj.usuario.nome}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Ação</f:facet>
+							<h:commandButton value="Detalhes ..."
+								action="#{historicoVendaController.detalhes(obj)}">
+								<f:ajax execute="@this" render="@none" />
+							</h:commandButton>
+						</h:column>
+					</h:dataTable>
+				</h:form>
+			</section>
+		</center>
 	</ui:define>
 </ui:composition>
 

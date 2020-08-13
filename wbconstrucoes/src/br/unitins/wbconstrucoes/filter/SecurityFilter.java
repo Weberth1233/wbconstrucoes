@@ -23,38 +23,36 @@ public class SecurityFilter implements Filter {
 	public void init(FilterConfig filterConfig) throws ServletException {
 		System.out.println("SecurityFilter Iniciado.");
 	}
-	
+
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		
-		chain.doFilter(request, response);
-		return;
+		/*chain.doFilter(request, response);
+		return;*/
 		
-		/*HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 		String url = httpServletRequest.getRequestURI();
 		System.out.println(url);
-		if(url.equals("/wbconstrucoes/faces/login.xhtml")) {
+		if(url.equals("/wbconstrucoes/faces/login.xhtml")|| url.equals("/wbconstrucoes/faces/cadastrousuario.xhtml")) {
+			
 			chain.doFilter(request, response);
 			return;
 		}
-		/*Criando a sessão e adicionando o usuario nela*/
-		/*HttpSession session = httpServletRequest.getSession(false);
-		
+		HttpSession session = httpServletRequest.getSession(false);
+
 		Usuario usuario = null;
-		/*Se a sessao estiver funcionado eu vou adicionar um usuario a sessão*/
-		/*if(session != null) {
+		if(session != null) {
 			usuario = (Usuario) session.getAttribute("usuarioLogado");
 		}
 		if(usuario == null) {
 			((HttpServletResponse) response).sendRedirect("/wbconstrucoes/faces/login.xhtml");
 		}else {
-			/*Para seguir o fluxo das paginas
 			chain.doFilter(request, response);
 			return;
-		}*/
+		}
 	}
-	
+
 	@Override
 	public void destroy() {
 	}

@@ -7,62 +7,65 @@
 <ui:composition template="template.xhtml">
 	<ui:define name="conteudo">
 		<header>
-			<h2>Detalhes da Compra</h2>
+			<h2 style="text-align: center;">Detalhes da Compra</h2>
 		</header>
-		<section>
-			<div class="row">
-				<div class="col-xs-12 col-xs-updated">
-					<h:form styleClass="form-horizontal">
-						<h:messages id="messages" style="color:red" globalOnly="false" />
+		<center>
+			<section>
+				<div class="row">
+					<div class="col-xs-12 col-xs-updated">
+						<h:form styleClass="form-horizontal">
+							<h:messages id="messages" style="color:red" globalOnly="false" />
 
-						<div class="mb-3">
-							<h:outputLabel value="Cliente: " />
-							<h:outputLabel
-								value=" #{detalheVendaController.venda.usuario.nome}" />
-						</div>
-						<div class="mb-3">
-							<h:outputLabel value="Data da Venda: " />
-							<h:outputLabel value="#{detalheVendaController.venda.data}">
-								<f:convertDateTime type="localDate" pattern="dd-MM-yyyy" />
-							</h:outputLabel>
-						</div>
-						<div class="mb-3">
-							<h:outputLabel value="Total da venda: " />
-							<h:outputLabel value="#{detalheVendaController.venda.totalVenda}">
-								<f:convertNumber locale="pt_BR" currencySymbol="R$"
-									type="currency" />
-							</h:outputLabel>
-						</div>
+							<div class="mb-3">
+								<h:outputLabel value="Cliente: " />
+								<h:outputLabel
+									value=" #{detalheVendaController.venda.usuario.nome}" />
+							</div>
+							<div class="mb-3">
+								<h:outputLabel value="Data da Venda: " />
+								<h:outputLabel value="#{detalheVendaController.venda.data}">
+									<f:convertDateTime type="localDate" pattern="dd-MM-yyyy" />
+								</h:outputLabel>
+							</div>
+							<div class="mb-3">
+								<h:outputLabel value="Total da compra: " />
+								<h:outputLabel
+									value="#{detalheVendaController.venda.totalVenda}">
+									<f:convertNumber locale="pt_BR" currencySymbol="R$"
+										type="currency" />
+								</h:outputLabel>
+							</div>
+							<hr />
 
-						<hr />
-
-						<div class="mb-3">
-							<h:outputLabel value="Itens vendidos: " />
-									<h:dataTable
-										 value="#{detalheVendaController.venda.listaItemVenda}" var="obj">
+							<div class="mb-3">
+								<h:outputLabel value="Itens vendidos: " />
+								<h:dataTable
+									value="#{detalheVendaController.venda.listaItemVenda}"
+									var="obj">
 									<h:column>
-									<f:facet name="header">Nome</f:facet>
-									<h:outputLabel value="#{obj.produto.descricao}" />
-								</h:column>
+										<f:facet name="header">Nome</f:facet>
+										<h:outputLabel value="#{obj.produto.descricao}" />
+									</h:column>
 
-								<h:column>
-									<f:facet name="header">Valor</f:facet>
-									<h:outputLabel value="#{obj.valor}">
-										<f:convertNumber locale="pt_BR" currencySymbol="R$"
-											type="currency" />
-									</h:outputLabel>
-								</h:column>
-							</h:dataTable>
-						</div>
-						<div class="mb-3">
-							<h:commandButton value="Voltar"
-								onclick="history.go(-1); return false;"
-								styleClass="col-md-2 mb-3 btn btn-default form-control" />
-						</div>
-					</h:form>
+									<h:column>
+										<f:facet name="header">Valor</f:facet>
+										<h:outputLabel value="#{obj.valor}">
+											<f:convertNumber locale="pt_BR" currencySymbol="R$"
+												type="currency" />
+										</h:outputLabel>
+									</h:column>
+								</h:dataTable>
+							</div>
+							<div class="mb-3">
+								<h:commandButton value="Voltar"
+									onclick="history.go(-1); return false;"
+									styleClass="col-md-2 mb-3 btn btn-default form-control" />
+							</div>
+						</h:form>
+					</div>
 				</div>
-			</div>
-		</section>
+			</section>
+		</center>
 	</ui:define>
 </ui:composition>
 

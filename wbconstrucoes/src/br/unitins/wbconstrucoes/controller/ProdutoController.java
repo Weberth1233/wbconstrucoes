@@ -19,8 +19,8 @@ public class ProdutoController extends Controller<Produto> {
 		super(new ProdutoDao());
 		Flash flash = FacesContext.getCurrentInstance().
 				getExternalContext().getFlash();
-		flash.keep("flashProduto");
-		listaProdutos = ((List<Produto>) flash.get("flashProduto"));
+		flash.keep("flashproduto");
+		entity = (Produto) flash.get("flashproduto");
 	}
 	
 	public List<Produto> getListaProdutos() {

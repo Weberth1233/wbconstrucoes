@@ -1,5 +1,7 @@
 package br.unitins.wbconstrucoes.application;
 
+import java.util.jar.Attributes;
+
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -22,7 +24,7 @@ public class Session {
 		}
 		return FacesContext.getCurrentInstance().getExternalContext();
 	}
-
+	
 	public Object getAttribute(String key) {
 		return getExternalContext().getSessionMap().get(key);
 	}
@@ -30,11 +32,9 @@ public class Session {
 	public void setAttribute(String key, Object value) {
 		getExternalContext().getSessionMap().put(key, value);
 	}
-
 	public void invalidateSession() {
 		getExternalContext().invalidateSession();
 	}
-
 	public void setAttribute(int idProduto, Object value) {
 		// TODO Auto-generated method stub
 		

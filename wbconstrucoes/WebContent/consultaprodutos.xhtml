@@ -13,36 +13,47 @@
 		<h:messages errorStyle="color:red" infoStyle="color:green"
 			warnStyle="color:brown" />
 		<header>
-			<h2>Consultar Produtos</h2>
+			<h2 style="text-align: center;">Consultar Produtos</h2>
 		</header>
-		<section>
-			<h:form id="formDataTable">
-				<h:dataTable id="dataTable"
-					value="#{consultaProdutoController.listaProduto}" var="obj">
-					<h:column>
-						<f:facet name="header">Descrição:</f:facet>
-						<h:outputLabel value="#{obj.descricao}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Preço:</f:facet>
-						<h:outputLabel value="#{obj.valor}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Estoque:</f:facet>
-						<h:outputLabel value="#{obj.qtdEstoque}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Categoria:</f:facet>
-						<h:outputLabel value="#{obj.categoria}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">Ação</f:facet>
-						<h:commandLink value="editar"
-							action="#{consultaProdutoController.editar(obj)}" />
-					</h:column>
-				</h:dataTable>
-			</h:form>
-		</section>
+		<center>
+			<section>
+				<h:form>
+					<h:panelGrid id="table_consulta" columns="1">
+						<h:inputText value="#{consultaProdutoController.filtro}" />
+
+						<h:commandButton value="Pesquisar"
+							actionListener="#{consultaProdutoController.pesquisar}" />
+						<h:commandButton value="+ Novo Produto"
+							action="#{consultaProdutoController.novoProduto}" />
+
+					</h:panelGrid>
+					<h:dataTable id="dataTable"
+						value="#{consultaProdutoController.listaProduto}" var="obj">
+						<h:column>
+							<f:facet name="header">Descrição:</f:facet>
+							<h:outputLabel value="#{obj.descricao}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Preço:</f:facet>
+							<h:outputLabel value="#{obj.valor}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Estoque:</f:facet>
+							<h:outputLabel value="#{obj.qtdEstoque}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Categoria:</f:facet>
+							<h:outputLabel value="#{obj.categoria}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Ação</f:facet>
+							<h:commandLink value="editar"
+								action="#{consultaProdutoController.editar(obj)}" />
+						</h:column>
+					</h:dataTable>
+				</h:form>
+			</section>
+		</center>
 	</ui:define>
 </ui:composition>
 </html>

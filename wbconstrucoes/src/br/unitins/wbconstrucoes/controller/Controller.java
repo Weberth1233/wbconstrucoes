@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import br.unitins.wbconstrucoes.application.Util;
 import br.unitins.wbconstrucoes.dao.DAO;
+import br.unitins.wbconstrucoes.dao.TelefoneDao;
 import br.unitins.wbconstrucoes.model.Entity;
 
 public abstract class Controller<T extends Entity<T>> implements Serializable{

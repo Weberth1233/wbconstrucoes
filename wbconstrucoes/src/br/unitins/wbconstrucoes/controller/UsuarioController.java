@@ -7,7 +7,7 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
-
+import br.unitins.wbconstrucoes.application.Session;
 import br.unitins.wbconstrucoes.application.Util;
 import br.unitins.wbconstrucoes.dao.DAO;
 import br.unitins.wbconstrucoes.dao.UsuarioDao;
@@ -20,31 +20,16 @@ import br.unitins.wbconstrucoes.model.Usuario;
 public class UsuarioController extends Controller<Usuario> implements Serializable {
 
 	private static final long serialVersionUID = 4229379253264816939L;
-	private List<Usuario>lista;
-
+	
 	public UsuarioController() {
 		super(new UsuarioDao());
-	}
-	
-	public List<Usuario> getLista() {
-		if(lista == null) {
-			UsuarioDao dao = new UsuarioDao();
-			lista = dao.findAll();
-		}
-		return lista;
-	}
-	
-	@Override
-	public void limpar() {
-		super.limpar();
-		lista = null;
 	}
 	
 	@Override
 	public Usuario getEntity() {
 		if(entity == null) {
 			entity = new Usuario();
-		}
+		}	
 		return entity;
 	}
 	

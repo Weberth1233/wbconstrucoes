@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import br.unitins.wbconstrucoes.model.ItemVenda;
+import br.unitins.wbconstrucoes.model.Produto;
 import br.unitins.wbconstrucoes.model.Sexo;
 import br.unitins.wbconstrucoes.model.TipoUsuario;
 import br.unitins.wbconstrucoes.model.Usuario;
@@ -51,7 +52,7 @@ public class VendaDao extends DAO<Venda>{
 			conn.commit();
 			System.out.println("Inclusão realizada com sucesso.");
 			retorno = true;
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			rollback(conn);
@@ -64,7 +65,7 @@ public class VendaDao extends DAO<Venda>{
 		}
 		return retorno;	
 	}
-	
+
 	private boolean createItemVenda(ItemVenda itemVenda, Connection conn) {
 
 		boolean retorno = false;
@@ -84,6 +85,41 @@ public class VendaDao extends DAO<Venda>{
 			stat.setDouble(2, itemVenda.getValor());
 			stat.setInt(3, itemVenda.getVenda().getId());
 			stat.execute();
+			
+			if (atualizarEstoque(itemVenda.getProduto(), conn) == false) {
+				throw new Exception("Erro ao atualizar o estoque");
+			}
+
+			retorno = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			rollback(conn);
+		} catch (Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		} 
+		finally {
+			closeStatement(stat);
+		}
+		return retorno;	
+	}
+	private boolean atualizarEstoque(Produto produto, Connection conn) {
+
+		boolean retorno = false;
+		//		Connection conn = getConnection();
+
+		StringBuffer sql = new StringBuffer();
+		sql.append("UPDATE produtos SET qtd_estoque = qtd_estoque  -1 ");
+		sql.append("WHERE id_produto = ? ");
+
+		PreparedStatement stat = null;
+
+		try {
+			stat = conn.prepareStatement(sql.toString());
+
+			stat.setInt(1, produto.getId());
+
+			stat.execute();
 
 
 			retorno = true;
@@ -94,8 +130,8 @@ public class VendaDao extends DAO<Venda>{
 			closeStatement(stat);
 		}
 		return retorno;	
-	}
 
+	}	
 	@Override
 	public boolean update(Venda entity) {
 		// TODO Auto-generated method stub
@@ -113,11 +149,11 @@ public class VendaDao extends DAO<Venda>{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	public List<Venda> findByUsuario(int idUsuario) {
 		List<Venda> listaVenda = new ArrayList<Venda>();
 		Connection conn = getConnetion();
-		
+
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ");
 		sql.append("  v.id, ");
@@ -137,15 +173,15 @@ public class VendaDao extends DAO<Venda>{
 		sql.append("WHERE ");
 		sql.append("  v.idusuario = u.id AND ");
 		sql.append("  u.id = ? ");
-		
+
 		PreparedStatement stat = null;
 		try {
 			stat = conn.prepareStatement(sql.toString());
 
 			stat.setInt(1, idUsuario);
-			
+
 			ResultSet rs = stat.executeQuery();
-			
+
 			while(rs.next()) {
 				Venda venda = new Venda();
 				venda.setId(rs.getInt("id"));
@@ -162,12 +198,12 @@ public class VendaDao extends DAO<Venda>{
 				venda.getUsuario().setSexo(Sexo.valueOf(rs.getInt("sexo")));
 				venda.getUsuario().setTipoUsuario(TipoUsuario.valueOf(rs.getInt("tipousuario")));
 				// e os itens de venda?!!?
-				
+
 				ItemVendaDao dao = new ItemVendaDao();
 				venda.setListaItemVenda(dao.findByVenda(venda));
 				listaVenda.add(venda);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			rollback(conn);
@@ -177,12 +213,12 @@ public class VendaDao extends DAO<Venda>{
 		}
 		return listaVenda;
 	}
-	
+
 	@Override
 	public Venda findById(int id) {
 		Venda venda = null;
 		Connection conn = getConnetion();
-		
+
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT ");
 		sql.append("  v.id, ");
@@ -203,12 +239,12 @@ public class VendaDao extends DAO<Venda>{
 		sql.append("  v.idusuario = u.id AND ");
 		sql.append("  u.id = ? ");
 
-		
+
 		PreparedStatement stat = null;
 		try {
 			stat = conn.prepareStatement(sql.toString());
 			stat.setInt(1, id);
-			
+
 			ResultSet rs = stat.executeQuery();
 			while(rs.next()) {
 				venda = new Venda();
@@ -226,7 +262,7 @@ public class VendaDao extends DAO<Venda>{
 				venda.getUsuario().setSexo(Sexo.valueOf(rs.getInt("sexo")));
 				venda.getUsuario().setTipoUsuario(TipoUsuario.valueOf(rs.getInt("tipousuario")));
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			rollback(conn);

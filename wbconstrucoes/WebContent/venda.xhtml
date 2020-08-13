@@ -11,45 +11,47 @@
 <ui:composition template="template.xhtml">
 	<ui:define name="conteudo">
 		<header>
-			<h2>Venda de Materias</h2>
+			<h2 style="text-align: center;">Venda de Materias</h2>
 		</header>
-		<section>
-		<h:messages errorStyle="color:red" infoStyle="color:green"
-				warnStyle="color:brown" />
-			<h:form>
-				<h:dataTable value="#{vendaProdutoController.listaProduto}"
-					var="obj">
-					<h:column>
-						<f:facet name="header">Categoria</f:facet>
-						<h:outputLabel value="#{obj.categoria}" />
-					</h:column>
+		<center>
+			<section>
+				<h:messages errorStyle="color:red"  infoStyle="color:green"
+					warnStyle="color:brown"/>
+				<h:form>
+					<h:dataTable value="#{vendaProdutoController.listaProduto}"
+						var="obj">
+						<h:column>
+							<f:facet name="header">Categoria</f:facet>
+							<h:outputLabel value="#{obj.categoria}" />
+						</h:column>
 
-					<h:column>
-						<f:facet name="header">Descricao</f:facet>
-						<h:outputLabel value="#{obj.descricao}">
-						</h:outputLabel>
-					</h:column>
+						<h:column>
+							<f:facet name="header">Descricao</f:facet>
+							<h:outputLabel value="#{obj.descricao}">
+							</h:outputLabel>
+						</h:column>
 
-					<h:column>
-						<f:facet name="header">Preço</f:facet>
-						<h:outputLabel value="#{obj.valor}">
-							<f:convertNumber locale="pt_BR" currencySymbol="R$"
-								type="currency" />
-						</h:outputLabel>
-					</h:column>
+						<h:column>
+							<f:facet name="header">Preço</f:facet>
+							<h:outputLabel value="#{obj.valor}">
+								<f:convertNumber locale="pt_BR" currencySymbol="R$"
+									type="currency" />
+							</h:outputLabel>
+						</h:column>
 
-					<h:column>
-						<f:facet name="header">Ação</f:facet>
-						<h:commandButton value="Adicionar Carrinho"
-							actionListener="#{vendaProdutoController.adicionar(obj.id)}">
-							<f:ajax render="@all" execute="@this" />
-						</h:commandButton>
-					</h:column>
+						<h:column>
+							<f:facet name="header">Ação</f:facet>
+							<h:commandButton value="Adicionar Carrinho"
+								actionListener="#{vendaProdutoController.adicionar(obj.id)}">
+								<f:ajax render="@all" execute="@this" />
+							</h:commandButton>
+						</h:column>
 
-				</h:dataTable>
+					</h:dataTable>
 
-			</h:form>
-		</section>
+				</h:form>
+			</section>
+		</center>
 	</ui:define>
 </ui:composition>
 </html>

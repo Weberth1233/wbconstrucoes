@@ -12,16 +12,18 @@
 	<link href="https://fonts.googleapis.com/css?family=Tangerine"
 		rel="Stylesheet"></link>
 </h:head>
-<h:messages errorStyle="color:red" infoStyle="color:green"
-	warnStyle="color:brown" />
 <header>
 	<div class="cabecalho">
 		<h2>Tela de Cadastro</h2>
-		<h:commandLink value="Voltar" action="login.xhtml?faces-redirect=true" />
+		<h:commandLink value="Voltar" action="login.xhtml?faces-redirect=true">
+			<f:ajax execute="@this" render="@all"></f:ajax>
+		</h:commandLink>
 	</div>
 </header>
 <body>
 	<section>
+		<h:messages errorStyle="color:red" infoStyle="color:green"
+			warnStyle="color:brown" />
 		<h:form>
 			<div class="cadastro_cliente">
 				<h:panelGrid columns="1">
@@ -48,18 +50,18 @@
 					<h:outputLabel value="E-mail" />
 					<h:inputText id="itEmail" value="#{usuarioController.entity.email}"
 						required="true" requiredMessage="E-mail deve ser informado" />
-					<h:outputLabel value="Sexo" />
 					
+					<h:outputLabel value="Sexo" />
 					<h:selectOneMenu id="itSexo"
 						value="#{usuarioController.entity.sexo}">
 						<f:selectItems value="#{usuarioController.listaSexo}" var="sexo"
 							itemLabel="#{sexo.descricao}" />
 					</h:selectOneMenu>
-					
+
 					<h:selectOneMenu id="itTipoUsuario"
 						value="#{usuarioController.entity.tipoUsuario}">
-						<f:selectItems value="#{usuarioController.listaTipoUsuario}" var="tipo"
-							itemLabel="#{tipo.label}" />
+						<f:selectItems value="#{usuarioController.listaTipoUsuario}"
+							var="tipo" itemLabel="#{tipo.label}" />
 					</h:selectOneMenu>
 					<div class="botoes">
 						<h:commandButton id="buttonInsert" value="Cadastre-se"

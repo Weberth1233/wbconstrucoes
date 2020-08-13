@@ -3,9 +3,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -13,6 +10,7 @@ import br.unitins.wbconstrucoes.application.Session;
 import br.unitins.wbconstrucoes.application.Util;
 import br.unitins.wbconstrucoes.dao.VendaDao;
 import br.unitins.wbconstrucoes.model.ItemVenda;
+import br.unitins.wbconstrucoes.model.Produto;
 import br.unitins.wbconstrucoes.model.Usuario;
 import br.unitins.wbconstrucoes.model.Venda;
 
@@ -42,13 +40,21 @@ public class CarrinhoController implements Serializable {
 			
 		return venda;
 	}
-	
-	public void remover(int idProduto) {
-		Session.getInstance().setAttribute(idProduto, null);
-	}
 
 	public void setVenda(Venda venda) {
 		this.venda = venda;
+	}
+	
+	public void remover(Produto produto) {
+		/*
+		List<ItemVenda>aux = (ArrayList<ItemVenda>)Session.getInstance().getAttribute("carrinho");
+		
+		for (ItemVenda itemVenda : aux) {
+			if(itemVenda.getProduto().getId() == produto.getId()) {
+				aux.remove(itemVenda.getProduto().getId());
+			}
+		}
+		Session.getInstance().setAttribute("carrinho", aux);*/
 	}
 	
 	public void finalizar() {
@@ -72,6 +78,7 @@ public class CarrinhoController implements Serializable {
 		VendaDao dao = new VendaDao();
 		if(dao.create(venda)) {
 			Util.addInfoMessage("Compra finalizada com sucesso!");
+			Session.getInstance().setAttribute("carrinho", null);
 		}else {
 			Util.addErrorMessage("Ouve algum erro durante a compra!");
 		}

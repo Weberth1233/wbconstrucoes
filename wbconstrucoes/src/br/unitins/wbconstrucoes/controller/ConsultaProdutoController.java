@@ -6,7 +6,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-
 import br.unitins.wbconstrucoes.dao.ProdutoDao;
 import br.unitins.wbconstrucoes.model.Produto;
 
@@ -18,21 +17,32 @@ public class ConsultaProdutoController implements Serializable {
 	private String filtro;
 	private List<Produto> listaProduto;
 
-	public ConsultaProdutoController() {
-		ProdutoDao dao = new ProdutoDao();
-		listaProduto = dao.getFiltroCategoria(getFiltro());
-	}
 	public String novoProduto() {
-		return "produtos.xhtml?faces-redirect=true";
+		return "produtocad.xhtml?faces-redirect=true";
 	}
-
+	public void pesquisar() {
+		ProdutoDao dao = new ProdutoDao();
+		listaProduto = dao.getFiltroCategoria(filtro);
+	}
+	
+	public String editar(Produto produto) {
+		ProdutoDao dao= new ProdutoDao();
+		produto = dao.findById(produto.getId());
+		
+		Flash flash = FacesContext.getCurrentInstance().
+						getExternalContext().getFlash();
+		
+		flash.put("flashproduto", produto);
+		return "produtocad.xhtml?faces-redirect=true";
+	}
+	
 	public List<Produto> getListaProduto() {
 		if (listaProduto == null) {
 			listaProduto = new ArrayList<Produto>();
 		}
 		return listaProduto;
 	}
-
+	
 	public String getFiltro() {
 		/*Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		flash.keep("chave");
@@ -43,4 +53,5 @@ public class ConsultaProdutoController implements Serializable {
 	public void setFiltro(String filtro) {
 		this.filtro = filtro;
 	}
+	
 }

@@ -8,6 +8,7 @@
 		content="width=device-width, initial-scale=1"
 		http-equiv="X-UA-Conpatible" />
 	<h:outputStylesheet library="css" name="template.css" />
+	<h:outputStylesheet library="css" name="estilo_tabelas.css" />
 </h:head>
 
 <h:body>
@@ -18,6 +19,7 @@
 				<h:form>
 					<h:outputLabel value="Olá #{templateController.usuarioLogado.nome}"
 						rendered="#{templateController.usuarioLogado != null}" />
+
 					<h:commandLink value=" (Sair)"
 						action="#{templateController.encerrarSessao}"
 						rendered="#{templateController.usuarioLogado != null}"
@@ -38,15 +40,32 @@
 	</header>
 
 	<ui:insert name="menu">
-		<nav>
-			<ul>
-				<li><a href="template.xhtml">Home</a></li>
-				<li><a href="venda.xhtml">Venda de Produtos</a></li>
-				<li><a href="produtocad.xhtml">Cadastro Produto</a></li>
-				<li><a href="carrinho.xhtml">Carrinho</a></li>
-				<li><a href="historico.xhtml">Histórico</a></li>
-			</ul>
-		</nav>
+		<h:form>
+			<nav>
+				<ul>
+					<li><h:commandLink value="Home"
+							action="template.xhtml?faces-redirect=true" /></li>
+					<li><h:commandLink value="Venda de Produtos"
+							action="venda.xhtml?faces-redirect=true"
+							rendered="#{templateController.usuarioLogado.tipoUsuario.id != 2}" /></li>
+					<li><h:commandLink value="Cadastro Produto"
+							action="produtocad.xhtml?faces-redirect=true"
+							rendered="#{templateController.usuarioLogado.tipoUsuario.id != 3}" /></li>
+					<li><h:commandLink value="Consultar Produto"
+							action="consultaprodutos.xhtml?faces-redirect=true"
+							rendered="#{templateController.usuarioLogado.tipoUsuario.id != 3}" /></li>
+					<li><h:commandLink value="Carrinho"
+							action="carrinho.xhtml?faces-redirect=true"
+							rendered="#{templateController.usuarioLogado.tipoUsuario.id != 2}" /></li>
+					<li><h:commandLink value="Histórico"
+							action="historico.xhtml?faces-redirect=true"
+							rendered="#{templateController.usuarioLogado.tipoUsuario.id != 2}" /></li>
+					<li><h:commandLink value="Dados Pessoais"
+							action="wbconstrucoes.xhtml?faces-redirect=true"
+							rendered="#{templateController.usuarioLogado.tipoUsuario.id != 2}" /></li>
+				</ul>
+			</nav>
+		</h:form>
 	</ui:insert>
 
 	<ui:insert name="conteudo">

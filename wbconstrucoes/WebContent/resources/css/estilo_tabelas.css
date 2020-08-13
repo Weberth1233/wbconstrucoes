@@ -1,3 +1,30 @@
-form input{
-	width:100%;
+table{
+	background-color:#24292e;
+	border:5px solid #000;
+	padding:15px;
+}
+thead{
+	color: #fff;
+}
+td{
+	color: #fff;
+	border-left:2px solid #fff;
+	padding-left:10px;
+}
+td input[type="submit"]{
+	padding:4px;
+	color:green;
+}
+td a{
+	color:green;
+}
+table#table_consulta{
+	background-color: red;
+}
+.mb-3{
+	margin: 13px;
+	background-color: #fafafa;
+}
+form table#tablecadastro{
+	padding: 15px;
 }
